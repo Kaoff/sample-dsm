@@ -1,0 +1,138 @@
+
+---------------------------------------------------      DSM Log Start      ---------------------------------------------------
+Error message: Failed to build Storybook. For further assistance visit (https://support.invisionapp.com). 
+  
+Created Date: 2020-1-14 17:05:16
+Story file path: No story file path
+Component file path: Not found in "in-dsm"
+
+###  FILE: package.json
+  
+{
+  "pkg": {
+    "name": "sample-complib",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+      "@invisionapp/dsm-storybook": "^0.0.120",
+      "@testing-library/jest-dom": "^4.2.4",
+      "@testing-library/react": "^9.3.2",
+      "@testing-library/user-event": "^7.1.2",
+      "@types/jest": "^24.0.0",
+      "@types/node": "^12.0.0",
+      "@types/react": "^16.9.0",
+      "@types/react-dom": "^16.9.0",
+      "react": "^16.12.0",
+      "react-dom": "^16.12.0",
+      "react-scripts": "3.3.0",
+      "typescript": "~3.7.2"
+    },
+    "scripts": {
+      "start": "react-scripts start",
+      "build": "react-scripts build",
+      "test": "react-scripts test",
+      "eject": "react-scripts eject",
+      "storybook:start": "start-storybook -p 9009 -s public",
+      "storybook:build": "build-storybook -s public",
+      "dsm:publish": "dsm-storybook publish",
+      "dsm:preview": "dsm-storybook preview"
+    },
+    "eslintConfig": {
+      "extends": "react-app"
+    },
+    "browserslist": {
+      "production": [
+        ">0.2%",
+        "not dead",
+        "not op_mini all"
+      ],
+      "development": [
+        "last 1 chrome version",
+        "last 1 firefox version",
+        "last 1 safari version"
+      ]
+    },
+    "devDependencies": {
+      "@storybook/addon-actions": "^5.3.3",
+      "@storybook/addon-info": "^5.3.3",
+      "@storybook/addon-links": "^5.3.3",
+      "@storybook/preset-create-react-app": "^1.5.1",
+      "@storybook/react": "^5.3.3",
+      "awesome-typescript-loader": "^5.2.1",
+      "react-docgen-typescript-loader": "^3.6.0"
+    },
+    "peerDependencies": {
+      "@storybook/addon-options": "^5.3.3",
+      "@storybook/addons": "^5.3.3"
+    },
+    "readme": "ERROR: No README data found!",
+    "_id": "sample-complib@0.1.0"
+  },
+  "path": "/Users/bweber/Wynd/sample-complib/package.json"
+}
+
+###  FILE: '.dsmrc'
+  
+{
+  "dsmHost": "wynd.invisionapp.com",
+  "organization": "wynd",
+  "outputDir": ".dsm",
+  "storyPath": "src/**/*.stories.js"
+}
+
+####  STORYBOOK CONFIG /Users/bweber/Wynd/sample-complib/.storybook/*
+   
+
+###  FILE: /Users/bweber/Wynd/sample-complib/.storybook/addons.js
+  
+import { registerDsm } from '@invisionapp/dsm-storybook/register';
+registerDsm(process.env.STORYBOOK_DSM);
+
+,
+###  FILE: /Users/bweber/Wynd/sample-complib/.storybook/config.js
+  
+import { configure, addDecorator, addParameters } from '@storybook/react';
+import { initDsm } from '@invisionapp/dsm-storybook';
+
+// automatically import all files ending in *.stories.js
+const req = require.context('../src', true, /\.stories\.js$/);
+function loadStories() {
+    req.keys().forEach((filename) => req(filename));
+}
+
+//Init Dsm
+initDsm({
+    addDecorator,
+    addParameters,
+    callback: () => configure(loadStories, module)
+});
+,
+###  FILE: /Users/bweber/Wynd/sample-complib/.storybook/main.js
+  
+module.exports = {
+  stories: ['../src/**/*.stories.tsx'],
+  addons: [
+    '@storybook/preset-create-react-app',
+    '@storybook/addon-actions',
+    '@storybook/addon-links',
+  ],
+  webpackFinal: async config => {
+    config.module.rules.push({
+      test: /\.(ts|tsx)$/,
+      use: [
+        {
+          loader: require.resolve('awesome-typescript-loader'),
+        },
+        // Optional
+        {
+          loader: require.resolve('react-docgen-typescript-loader'),
+        },
+      ],
+    });
+    config.resolve.extensions.push('.ts', '.tsx');
+    return config;
+  },
+};
+
+ 
+---------------------------------------------------      DSM Log End      -----------------------------------------------------

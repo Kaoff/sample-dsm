@@ -1,0 +1,7 @@
+{
+  "authToken": "H1zfrlniB",
+  "dsmHost": "wynd.invisionapp.com",
+  "organization": "wynd",
+  "outputDir": ".dsm",
+  "storyPath": "src/**/*.stories.js"
+}

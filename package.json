@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@invisionapp/dsm-storybook": "^0.0.120",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
@@ -19,7 +20,11 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "storybook:start": "start-storybook -p 9009 -s public",
+    "storybook:build": "build-storybook -s public",
+    "dsm:publish": "dsm-storybook publish",
+    "dsm:preview": "dsm-storybook preview"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -35,5 +40,18 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@storybook/addon-actions": "^5.3.3",
+    "@storybook/addon-info": "^5.3.3",
+    "@storybook/addon-links": "^5.3.3",
+    "@storybook/preset-create-react-app": "^1.5.1",
+    "@storybook/react": "^5.3.3",
+    "awesome-typescript-loader": "^5.2.1",
+    "react-docgen-typescript-loader": "^3.6.0"
+  },
+  "peerDependencies": {
+    "@storybook/addon-options": "^5.3.3",
+    "@storybook/addons": "^5.3.3"
   }
 }
